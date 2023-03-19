@@ -85,19 +85,21 @@ const updateStorage = (index, taskValue, completed) => {
 };
 
 const checkExistingTask = (taskValue) => {
-    for (let key in localStorage) {
-      if (key.includes(taskValue)) {
-        return true;
-      }
+  for (let key in localStorage) {
+    if (key.endsWith(`_${taskValue}`)) {
+      return true;
     }
-    return false;
-  };
+  }
+  return false;
+};
+
+
   
-document.querySelector("#push").addEventListener("click", () => {
+  document.querySelector("#push").addEventListener("click", () => {
     disableButtons(false);
     if (newInput.value.length == 0) {
       alert("Please Enter A Task");
-    } else if (checkExistingTask(newInput.value)) {
+    } else if (checkExistingTask(newInput.value, updateNote)) {
       alert("Task Already Exists!");
     } else {
       if (updateNote == "") {
