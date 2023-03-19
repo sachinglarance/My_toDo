@@ -30,7 +30,6 @@ body{
     background-color: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
     display: grid;
     grid-template-columns: 9fr 3fr;
     gap: 2%;
@@ -43,6 +42,8 @@ body{
     padding: 15px;
     color: #111111;
     font-weight: 500;
+    box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
+    border-radius: 10px;
   }
   #new-task input:focus {
     outline: none;
@@ -52,7 +53,7 @@ body{
     font-family: "Poppins", sans-serif;
     font-weight: 500;
     font-size: 1em;
-    background-color: #ce0bff;
+    background-color: #fa95b6;
     color: #ffffff;
     outline: none;
     border: none;
@@ -60,6 +61,10 @@ body{
     cursor: pointer;
     
   }
+  #new-task button:hover {
+    background-color: #fa0053;
+   color: white;
+ }
 
   #tasks {
     background-color: #ffffff;
@@ -67,7 +72,6 @@ body{
     padding: 1.8em 1.25em;
     margin-top: 3.8em;
     width: 100%;
-    box-shadow: 0 1.25em 1.8em rgba(1, 24, 48, 0.15);
     border-radius: 0.6em;
   }
   .task {

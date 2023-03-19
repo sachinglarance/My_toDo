@@ -98,7 +98,7 @@ document.querySelector("#push").addEventListener("click", () => {
     if (newInput.value.length == 0) {
       alert("Please Enter A Task");
     } else if (checkExistingTask(newInput.value)) {
-      alert("Task already exists!");
+      alert("Task Already Exists!");
     } else {
       if (updateNote == "") {
         updateStorage(count, newInput.value, false);
