@@ -59,6 +59,7 @@ const displayTasks = () => {
         removeTask(parent.id);
         parent.remove();
         count -= 1;
+
       }else{
         return false;
       }
@@ -102,6 +103,7 @@ const checkExistingTask = (taskValue) => {
     } else if (checkExistingTask(newInput.value, updateNote)) {
       alert("Task Already Exists!");
     } else {
+      toastAdded()
       if (updateNote == "") {
         updateStorage(count, newInput.value, false);
       } else {
@@ -114,4 +116,11 @@ const checkExistingTask = (taskValue) => {
       newInput.value = "";
     }
   });
+  
+
+  function toastAdded() {
+    var x = document.getElementById("added");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }
   
