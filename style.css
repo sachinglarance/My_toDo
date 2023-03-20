@@ -16,10 +16,10 @@ body{
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  height: 400px;
-  width: 500px;
-  top: 15%;
-  left: 50%;
+  height: 300px;
+  width: 400px;
+  top: 30%;
+  left: 30%;
   transform: translate(-50%, -50%);
 }
 .container {
