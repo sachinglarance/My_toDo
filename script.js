@@ -31,15 +31,37 @@ const displayTasks = () => {
     let taskInnerDiv = document.createElement("div");
     taskInnerDiv.classList.add("task");
     taskInnerDiv.setAttribute("id", key);
-    // there is no elements thats why put 1. invase we put 0 means index values only printed.it is using key
+    // there is no elements thats why put 1. incase we put 0 means index values only printed.it is using key
     taskInnerDiv.innerHTML = `<span id="taskname">${key.split("_")[1]}</span>`;
     let editButton = document.createElement("button");
     editButton.classList.add("edit");
     editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+    // if(!JSON.parse(value)){
+    //   editButton.style.visibility = "visible";
+    // }
+    // else{
+    //   editButton.style.visibility = "hidden";
+    //   taskInnerDiv.classList.add("completed");
+    // }
     taskInnerDiv.appendChild(editButton);
     taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
     tasksDiv.appendChild(taskInnerDiv);
   }
+  //complete task
+  // tasks = document.querySelectorAll(".task");
+  // tasks.forEach((element,index) => 
+  // {
+  //   element.onclick = () => {
+  //     if(element.classList.contains("completed")){
+  //       updateStorage(element.id.split("_")[0], element.innerText, false);
+  //     }else{
+  //       updateStorage(element.id.split("_")[0], element.innerText, true);
+  //       Object.keys.sort()
+  //     }
+  //   }
+  // })
+
+  
 // Edit tasks
   editTasks = document.getElementsByClassName("edit");
   Array.from(editTasks).forEach((element, index) => {
@@ -109,13 +131,13 @@ const checkExistingTask = (taskValue) => {
       //Store locally and display from local storage
       if (updateNote == "") {
          //new task
-        updateStorage(count, newInput.value, true);
+        updateStorage(count, newInput.value, false);
       } else {
          //update task
          // index 0 is st from first. it is using updating field
         let existingCount = updateNote.split("_")[0];
         removeTask(updateNote);
-        updateStorage(existingCount, newInput.value, true);
+        updateStorage(existingCount, newInput.value, false);
         updateNote = "";
       }
       count += 1;
@@ -137,5 +159,5 @@ const checkExistingTask = (taskValue) => {
     tDelete.className = "show";
     setTimeout(function(){ tDelete.className = tDelete.className.replace("show", ""); }, 3000);
   }
-  
+
   
