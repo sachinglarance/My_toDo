@@ -10,6 +10,11 @@ window.onload = () => {
   count = Object.keys(localStorage).length;
   displayTasks();
  
+   
+  window.addEventListener('beforeunload', function() {
+    localStorage.clear();
+  });
+  
 };
 //Display the tasks
 const displayTasks = () => {
@@ -25,9 +30,6 @@ const displayTasks = () => {
   tasks = tasks.sort();
 
   for (let key of tasks) {
-    let classValue = "";
-9// Get all values
-    let value = localStorage.getItem(key);
     let taskInnerDiv = document.createElement("div");
     taskInnerDiv.classList.add("task");
     taskInnerDiv.setAttribute("id", key);
@@ -36,16 +38,18 @@ const displayTasks = () => {
     let editButton = document.createElement("button");
     editButton.classList.add("edit");
     editButton.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
-    // if(!JSON.parse(value)){
-    //   editButton.style.visibility = "visible";
-    // }
-    // else{
-    //   editButton.style.visibility = "hidden";
-    //   taskInnerDiv.classList.add("completed");
-    // }
     taskInnerDiv.appendChild(editButton);
     taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
     tasksDiv.appendChild(taskInnerDiv);
+    // complete check function
+  //   let value = localStorage.getItem(key);
+  //   if(!JSON.parse(value)){
+  //     editButton.style.visibility = "visible";
+  //   }
+  //   else{
+  //     editButton.style.visibility = "hidden";
+  //     taskInnerDiv.classList.add("completed");
+  //   }
   }
   //complete task
   // tasks = document.querySelectorAll(".task");
@@ -68,8 +72,11 @@ const displayTasks = () => {
     element.addEventListener("click", (e) => {
 // When you have js running on the same event of nested elements to stop being called.
       e.stopPropagation();
+      //disable other edit buttons when one task is being edited
+      disableButtons(true);
       //update input value and remove div
       let parent = element.parentElement;
+      
       newInput.value = parent.querySelector("#taskname").innerText;
       //set updateNote to the task that is being edited
       updateNote = parent.id;
@@ -98,6 +105,14 @@ const displayTasks = () => {
   });
 };
 
+//Disable Edit Button
+const disableButtons = (bool) => {
+  let editButtons = document.getElementsByClassName("edit");
+  Array.from(editButtons).forEach((element) => {
+    element.disabled = bool;
+  });
+};
+
 // Remove the task from localstorage
 const removeTask = (taskValue) => {
   localStorage.removeItem(taskValue);
@@ -123,6 +138,8 @@ const checkExistingTask = (taskValue) => {
 // Add a new task
   
   document.querySelector("#push").addEventListener("click", () => {
+     //Enable the edit button
+     disableButtons(false);
     if (newInput.value.length == 0) {
       alert("Please Enter A Task");
     } else if (checkExistingTask(newInput.value, updateNote)) {
