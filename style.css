@@ -12,14 +12,17 @@ body{
 }  
 
 .center {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size:300%;
   display: block;
+  border-style:inset;
   margin-left: auto;
   margin-right: auto;
   position: absolute;
-  height: 300px;
-  width: 400px;
-  top: 30%;
-  left: 30%;
+  color: #ffffff;
+  top: 10%;
+  left: 10%;
   transform: translate(-50%, -50%);
 }
 .container {
@@ -54,7 +57,7 @@ body{
     color: #111111;
     font-weight: 500;
     box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
-    border-radius: 10px;
+    border-radius: 20px;
   }
   #new-task input:focus {
     outline: none;
@@ -68,7 +71,7 @@ body{
     color: #ffffff;
     outline: none;
     border: none;
-    border-radius: 10px;
+    border-radius: 20px;
     cursor: pointer;
     
   }
@@ -81,19 +84,19 @@ body{
     background-color: #ffffff;
     position: relative;
     padding: 1.8em 1.25em;
-    margin-top: 3.8em;
+    margin-top: 15%;
     width: 100%;
-    border-radius: 0.6em;
+    border-radius: 10px;
   }
   .task {
     background-color: #ffffff;
     padding: 0.3em 0.6em;
-    margin-top: 0.6em;
+    margin-top: 20px;
     display: flex;
     align-items: center;
     border-bottom: 2px solid #d1d3d4;
     cursor: pointer;
-    border-radius: 0.4em;
+    border-radius: 10px;
     box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
   }
   .task span {
@@ -104,12 +107,11 @@ body{
   .task button {
     color: #ffffff;
     padding: 0.8em 0;
-    width: 2.8em;
-    border-radius: 5%;
+    width: 35px;
+    border-radius: 20%;
     border: none;
     outline: none;
     cursor: pointer;
-    border-radius: 0.8em;
   }
   .delete {
     background-color: #fd0d0d;
@@ -120,7 +122,7 @@ body{
     margin-right: 50px;
   }
 
-  #added,#deleted, #updated {
+  #added,#deleted {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 15px;
@@ -139,7 +141,7 @@ body{
   
   }
   
-  #added.show, #deleted.show, #updated.show {
+  #added.show, #deleted.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;

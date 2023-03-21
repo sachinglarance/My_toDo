@@ -31,6 +31,7 @@ const displayTasks = () => {
     let taskInnerDiv = document.createElement("div");
     taskInnerDiv.classList.add("task");
     taskInnerDiv.setAttribute("id", key);
+    // there is no elements thats why put 1. invase we put 0 means index values only printed.it is using key
     taskInnerDiv.innerHTML = `<span id="taskname">${key.split("_")[1]}</span>`;
     let editButton = document.createElement("button");
     editButton.classList.add("edit");
@@ -43,10 +44,8 @@ const displayTasks = () => {
   editTasks = document.getElementsByClassName("edit");
   Array.from(editTasks).forEach((element, index) => {
     element.addEventListener("click", (e) => {
-// When you have js running on the same event of nested elements
+// When you have js running on the same event of nested elements to stop being called.
       e.stopPropagation();
-//disable other edit buttons when one task is being edited
-      disableButtons(true);
       //update input value and remove div
       let parent = element.parentElement;
       newInput.value = parent.querySelector("#taskname").innerText;
@@ -77,14 +76,6 @@ const displayTasks = () => {
   });
 };
 
-//Disable edit button
-const disableButtons = (bool) => {
-  let editButtons = document.getElementsByClassName("edit");
-  Array.from(editButtons).forEach((element) => {
-    element.disabled = bool;
-  });
-};
-
 // Remove the task from localstorage
 const removeTask = (taskValue) => {
   localStorage.removeItem(taskValue);
@@ -110,43 +101,41 @@ const checkExistingTask = (taskValue) => {
 // Add a new task
   
   document.querySelector("#push").addEventListener("click", () => {
-        //Enable the edit button
-    disableButtons(false);
     if (newInput.value.length == 0) {
       alert("Please Enter A Task");
     } else if (checkExistingTask(newInput.value, updateNote)) {
       alert("Task Already Exists!");
     } else {
       //Store locally and display from local storage
-      toastAdded()
       if (updateNote == "") {
          //new task
-        updateStorage(count, newInput.value, false);
+        updateStorage(count, newInput.value, true);
       } else {
          //update task
+         // index 0 is st from first. it is using updating field
         let existingCount = updateNote.split("_")[0];
         removeTask(updateNote);
-        updateStorage(existingCount, newInput.value, false);
+        updateStorage(existingCount, newInput.value, true);
         updateNote = "";
       }
       count += 1;
       newInput.value = "";
-     
+        toastAdded()
     }
   });
   
 
   function toastAdded() {
-    var x = document.getElementById("added");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    var tAdd = document.getElementById("added");
+    tAdd.className = "show";
+    setTimeout(function(){ tAdd.className = tAdd.className.replace("show", ""); }, 3000);
   }
 
 
   function toastDeleted() {
-    var x = document.getElementById("deleted");
-    x.className = "show";
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    var tDelete = document.getElementById("deleted");
+    tDelete.className = "show";
+    setTimeout(function(){ tDelete.className = tDelete.className.replace("show", ""); }, 3000);
   }
   
   
