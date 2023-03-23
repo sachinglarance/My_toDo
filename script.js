@@ -10,11 +10,11 @@ window.onload = () => {
   count = Object.keys(localStorage).length;
   displayTasks();
  
-   
-  window.addEventListener('beforeunload', function() {
-    localStorage.clear();
-  });
+ 
   
+  if (localStorage.getItem('items')) {
+    localStorage.removeItem('items');
+  }
 };
 //Display the tasks
 const displayTasks = () => {
