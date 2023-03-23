@@ -42,33 +42,33 @@ const displayTasks = () => {
     taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
     tasksDiv.appendChild(taskInnerDiv);
     // complete check function
-  //   let value = localStorage.getItem(key);
-  //   if(!JSON.parse(value)){
-  //     editButton.style.visibility = "visible";
-  //   }
-  //   else{
-  //     editButton.style.visibility = "hidden";
-  //     taskInnerDiv.classList.add("completed");
-  //   }
+    let value = localStorage.getItem(key);
+    if(!JSON.parse(value)){
+      editButton.style.visibility = "visible";
+    }
+    else{
+      editButton.style.visibility = "hidden";
+      taskInnerDiv.classList.add("completed");
+    }
   }
   //complete task
-  // tasks = document.querySelectorAll(".task");
-  // tasks.forEach((element,index) => 
-  // {
-  //   element.onclick = () => {
-  //     if(element.classList.contains("completed")){
-  //       updateStorage(element.id.split("_")[0], element.innerText, false);
-  //     }else{
-  //       updateStorage(element.id.split("_")[0], element.innerText, true);
-  //       Object.keys.sort()
-  //     }
-  //   }
-  // })
+  tasks = document.querySelectorAll(".task");
+  tasks.forEach((element,index) => 
+  {
+    element.onclick = () => {
+      if(element.classList.contains("completed")){
+        updateStorage(element.id.split("_")[0], element.innerText, false);
+      }else{
+        updateStorage(element.id.split("_")[0], element.innerText, true);
+        Object.keys.sort()
+      }
+    }
+  })
 
   
 // Edit tasks
   editTasks = document.getElementsByClassName("edit");
-  Array.from(editTasks).forEach((element, index) => {
+  Array.from(editTasks).forEach((element,   ) => {
     element.addEventListener("click", (e) => {
 // When you have js running on the same event of nested elements to stop being called.
       e.stopPropagation();
@@ -163,6 +163,12 @@ const checkExistingTask = (taskValue) => {
     }
   });
   
+  newInput.addEventListener("keydown", function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      document.querySelector("#push").click();
+    }
+  });
 
   function toastAdded() {
     var tAdd = document.getElementById("added");
