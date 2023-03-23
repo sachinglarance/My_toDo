@@ -27,7 +27,7 @@ body{
 }
 .container {
     width: 100%;
-    max-width: 34em;
+    max-width:544px;
     position: absolute;
     padding: 10px;
     border-radius: 5px;
@@ -80,26 +80,28 @@ body{
    color: white;
  }
 
-  #tasks {
-    background-color: #ffffff;
-    position: relative;
-    padding: 1.8em 1.25em;
-    margin-top: 15%;
-    width: 100%;
-    border-radius: 10px;
-    word-wrap: break-word;
-  }
-  .task {
-    background-color: #ffffff;
-    padding: 0.3em 0.6em;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    border-bottom: 2px solid #d1d3d4;
-    cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
-  }
+ #tasks {
+  background-color: #ffffff;
+  position: relative;
+  padding: 28.8px 20px;
+  margin-top: 15%;
+  width: 100%;
+  border-radius: 10px;
+  word-wrap: break-word;
+}
+.task {
+  background-color: #ffffff;
+  padding: 4.8px 9.6px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #d1d3d4;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
+}
+
+  
   .task span {
     font-family: "Poppins", sans-serif;
     font-size: 90%;
@@ -108,7 +110,7 @@ body{
   }
   .task button {
     color: #ffffff;
-    padding: 0.8em 0;
+    padding: 12.8px 0;
     width: 35px;
     border-radius: 20%;
     border: none;
