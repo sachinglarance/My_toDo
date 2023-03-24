@@ -9,16 +9,10 @@ let count;
 window.onload = () => {
   count = Object.keys(localStorage).length;
   displayTasks();
- 
 } 
 //   window.addEventListener('beforeunload', function() {
 //     localStorage.clear();
 //   });
-  
-//   if (localStorage.getItem('items')) {
-//     localStorage.removeItem('items');
-//   }
-// };
 //Display the tasks
 const displayTasks = () => {
   if (Object.keys(localStorage).length > 0) {
@@ -26,12 +20,13 @@ const displayTasks = () => {
   } else {
     tasksDiv.style.display = "none";
   }
+
 // clear the tasks
   tasksDiv.innerHTML = "";
+
 // Fetching values in localstorage
   let tasks = Object.keys(localStorage);
   tasks = tasks.sort();
-
   for (let key of tasks) {
     let taskInnerDiv = document.createElement("div");
     taskInnerDiv.classList.add("task");
@@ -54,6 +49,7 @@ const displayTasks = () => {
       taskInnerDiv.classList.add("completed");
     }
   }
+
   //complete task
   tasks = document.querySelectorAll(".task");
   tasks.forEach((element,index) => 
@@ -67,14 +63,13 @@ const displayTasks = () => {
       }
     }
   })
-
   
 // Edit tasks
   editTasks = document.getElementsByClassName("edit");
   Array.from(editTasks).forEach((element,   ) => {
     element.addEventListener("click", (e) => {
      newInput.focus();
-// When you have js running on the same event of nested elements to stop being called.
+    // When you have js running on the same event of nested elements to stop being called.
       e.stopPropagation();
       //disable other edit buttons when one task is being edited
       disableButtons(true);
@@ -100,7 +95,6 @@ const displayTasks = () => {
         parent.remove();
         count -= 1;
         toastDeleted();
-
       }else{
         return false;
       }
@@ -174,7 +168,6 @@ document.querySelector("#push").addEventListener("click", () => {
   }
 });
 
-  
   newInput.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
       event.preventDefault();
