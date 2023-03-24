@@ -129,7 +129,7 @@ body{
     text-decoration: line-through;
   }
 
-  #added,#deleted {
+  #added,#deleted,#updated{
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-size: 15px;
@@ -148,7 +148,7 @@ body{
   
   }
   
-  #added.show, #deleted.show {
+  #added.show, #deleted.show , #updated.show{
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;

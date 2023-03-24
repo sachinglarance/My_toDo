@@ -10,15 +10,15 @@ window.onload = () => {
   count = Object.keys(localStorage).length;
   displayTasks();
  
-   
-  window.addEventListener('beforeunload', function() {
-    localStorage.clear();
-  });
+} 
+//   window.addEventListener('beforeunload', function() {
+//     localStorage.clear();
+//   });
   
-  if (localStorage.getItem('items')) {
-    localStorage.removeItem('items');
-  }
-};
+//   if (localStorage.getItem('items')) {
+//     localStorage.removeItem('items');
+//   }
+// };
 //Display the tasks
 const displayTasks = () => {
   if (Object.keys(localStorage).length > 0) {
@@ -73,6 +73,7 @@ const displayTasks = () => {
   editTasks = document.getElementsByClassName("edit");
   Array.from(editTasks).forEach((element,   ) => {
     element.addEventListener("click", (e) => {
+     newInput.focus();
 // When you have js running on the same event of nested elements to stop being called.
       e.stopPropagation();
       //disable other edit buttons when one task is being edited
@@ -126,10 +127,18 @@ const removeTask = (taskValue) => {
 const updateStorage = (index, taskValue, completed) => {
   localStorage.setItem(`${index}_${taskValue}`, completed);
   displayTasks();
+  
+  if(updateNote !== "") {
+    toastUpdated();
+    updateNote = "";
+  }
 };
 
 //check an existing task
-const checkExistingTask = (taskValue) => {
+const checkExistingTask = (taskValue, updateNote) => {
+  if (updateNote !== "") {
+    return false; // If we're updating a task, skip the check
+  }
   for (let key in localStorage) {
     if (key.endsWith(`_${taskValue}`)) {
       return true;
@@ -139,32 +148,32 @@ const checkExistingTask = (taskValue) => {
 };
 
 // Add a new task
-  
-  document.querySelector("#push").addEventListener("click", () => {
-     //Enable the edit button
-     disableButtons(false);
-    if (newInput.value.length == 0) {
-      alert("Please Enter A Task");
-    } else if (checkExistingTask(newInput.value, updateNote)) {
-      alert("Task Already Exists!");
+document.querySelector("#push").addEventListener("click", () => {
+  //Enable the edit button
+  disableButtons(false);
+  if (newInput.value.length == 0) {
+    alert("Please Enter A Task");
+  } else if (checkExistingTask(newInput.value, updateNote)) {
+    alert("Task Already Exists!");
+  } else {
+    //Store locally and display from local storage
+    if (updateNote == "") {
+      //new task
+      updateStorage(count, newInput.value, false);
     } else {
-      //Store locally and display from local storage
-      if (updateNote == "") {
-         //new task
-        updateStorage(count, newInput.value, false);
-      } else {
-         //update task
-         // index 0 is st from first. it is using updating field
-        let existingCount = updateNote.split("_")[0];
-        removeTask(updateNote);
-        updateStorage(existingCount, newInput.value, false);
-        updateNote = "";
-      }
-      count += 1;
-      newInput.value = "";
-        toastAdded()
+      //update task
+      // index 0 is st from first. it is using updating field
+      let existingCount = updateNote.split("_")[0];
+      removeTask(updateNote);
+      updateStorage(existingCount, newInput.value, false);
+      updateNote = "";
     }
-  });
+    count += 1;
+    newInput.value = "";
+    toastAdded();
+  }
+});
+
   
   newInput.addEventListener("keydown", function(event) {
     if (event.keyCode === 13) {
@@ -184,6 +193,12 @@ const checkExistingTask = (taskValue) => {
     var tDelete = document.getElementById("deleted");
     tDelete.className = "show";
     setTimeout(function(){ tDelete.className = tDelete.className.replace("show", ""); }, 3000);
+  }
+
+  function toastUpdated() {
+    var tUpdate = document.getElementById("updated");
+    tUpdate.className = "show";
+    setTimeout(function(){ tUpdate.className = tUpdate.className.replace("show", ""); }, 3000);
   }
 
   
