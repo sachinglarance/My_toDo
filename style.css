@@ -3,6 +3,7 @@
     margin: 0;
     box-sizing: border-box;
   }
+
 body{
   background-image: linear-gradient(0deg, rgb(255, 158, 213), rgb(62,201,254));
     height: 100%;
@@ -12,23 +13,15 @@ body{
 }  
 
 .center {
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size:300%;
-  display: block;
-  border-style:inset;
-  margin-left: auto;
-  margin-right: auto;
+ 
   position: absolute;
-  color: #ffffff;
   top: 10%;
-  left: 10%;
-  transform: translate(-50%, -50%);
+  left: 5%; 
 }
+
 .container {
     width: 100%;
-    max-width:544px;
-    margin-top: 18%;
+    max-width:500px;
     position:absolute;
     padding: 10px;
     border-radius: 5px;
@@ -36,7 +29,8 @@ body{
     border-width: 20px;
     background-image: linear-gradient(0deg,  rgb(62,201,254), rgb(255, 123, 198));
     transform: translate(-50%);
-    left: 50%;
+    top: 45%;
+    left: 50%;    
   }
 
 #new-task {
@@ -44,43 +38,40 @@ body{
     background-color: #ffffff;
     padding: 15px;
     border-radius: 10px;
-    float: left;
-    width: 100%;
-    display: inline;
-
   }
+
   #new-task input {
     font-family: "Poppins", sans-serif;
     font-size: 100%;
     border: none;
     border-bottom: 2px solid #d1d3d4;
-    padding: 15px;
+    padding: 3.5%;
     color: #111111;
     font-weight: 500;
     box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
     border-radius: 20px;
-    width: 78%;
-   
-    
+    width: 78%;  
   }
+
   #new-task input:focus {
     outline: none;
     border-color: #0b87ff;
   }
+  
   #new-task button {
     font-family: "Poppins", sans-serif;
     font-weight: 500;
+    text-align: center;
     font-size: 100%;
     background-color: #fa95b6;
     color: #ffffff;
-    outline: none;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     width: 20%;
-    padding: 15px;
-    
+    padding: 3.5%; 
   }
+
   #new-task button:hover {
     background-color: #fa0053;
    color: white;
@@ -95,6 +86,7 @@ body{
   border-radius: 10px;
   word-wrap: break-word;
 }
+
 .task {
   background-color: #ffffff;
   padding: 4.8px 9.6px;
@@ -102,20 +94,17 @@ body{
   display: flex;
   align-items: center;
   border-bottom: 2px solid #d1d3d4;
-  cursor: pointer;
   border-radius: 10px;
   box-shadow: 5px 5px 5px 5px rgba(1, 24, 48, 0.15);
 }
-
   
-  .task span {
+.task span {
     font-family: "Poppins", sans-serif;
     font-size: 90%;
     font-weight: 400;
-    margin-top: 20px;
-
-    
+    margin-top: 20px; 
   }
+
   .task button {
     color: #ffffff;
     padding: 12.8px 0;
@@ -125,14 +114,17 @@ body{
     outline: none;
     cursor: pointer;
   }
+
   .delete {
     background-color: #fd0d0d;
   }
+
   .edit {
     background-color: #003afa;
     margin-left: auto;
     margin-right: 50px;
   }
+
   .completed{
     text-decoration: line-through;
   }
@@ -152,8 +144,7 @@ body{
     position: fixed;
     z-index: 1;
     left: 50%;
-    bottom: 20%;
-  
+    top: 100px;
   }
   
   #added.show, #deleted.show , #updated.show{
@@ -163,14 +154,13 @@ body{
   }
   
   @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 20%; opacity: 1;}
+    from {top: 0; opacity: 0;}
+    to {top: 100px; opacity: 1;}
   }
-  
-  
+   
   @keyframes fadeout {
-    from {bottom: 20%; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
+    from {top: 100px; opacity: 1;}
+    to {top: 0; opacity: 0;}
   } 
   
 

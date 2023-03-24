@@ -10,9 +10,7 @@ window.onload = () => {
   count = Object.keys(localStorage).length;
   displayTasks();
 } 
-//   window.addEventListener('beforeunload', function() {
-//     localStorage.clear();
-//   });
+
 //Display the tasks
 const displayTasks = () => {
   if (Object.keys(localStorage).length > 0) {
@@ -39,30 +37,7 @@ const displayTasks = () => {
     taskInnerDiv.appendChild(editButton);
     taskInnerDiv.innerHTML += `<button class="delete"><i class="fa-solid fa-trash"></i></button>`;
     tasksDiv.appendChild(taskInnerDiv);
-    // complete check function
-    let value = localStorage.getItem(key);
-    if(!JSON.parse(value)){
-      editButton.style.visibility = "visible";
-    }
-    else{
-      editButton.style.visibility = "hidden";
-      taskInnerDiv.classList.add("completed");
-    }
   }
-
-  //complete task
-  tasks = document.querySelectorAll(".task");
-  tasks.forEach((element,index) => 
-  {
-    element.onclick = () => {
-      if(element.classList.contains("completed")){
-        updateStorage(element.id.split("_")[0], element.innerText, false);
-      }else{
-        updateStorage(element.id.split("_")[0], element.innerText, true);
-        Object.keys.sort()
-      }
-    }
-  })
   
 // Edit tasks
   editTasks = document.getElementsByClassName("edit");
@@ -94,7 +69,7 @@ const displayTasks = () => {
         removeTask(parent.id);
         parent.remove();
         count -= 1;
-        toastDeleted();
+        showToast("deleted");
       }else{
         return false;
       }
@@ -123,7 +98,7 @@ const updateStorage = (index, taskValue, completed) => {
   displayTasks();
   
   if(updateNote !== "") {
-    toastUpdated();
+    showToast("updated");
     updateNote = "";
   }
 };
@@ -164,7 +139,7 @@ document.querySelector("#push").addEventListener("click", () => {
     }
     count += 1;
     newInput.value = "";
-    toastAdded();
+    showToast("added");
   }
 });
 
@@ -175,23 +150,26 @@ document.querySelector("#push").addEventListener("click", () => {
     }
   });
 
-  function toastAdded() {
-    var tAdd = document.getElementById("added");
-    tAdd.className = "show";
-    setTimeout(function(){ tAdd.className = tAdd.className.replace("show", ""); }, 3000);
+  function showToast(messageType) {
+    let toastMessage;
+    switch(messageType) {
+      case "added":
+        toastMessage = "Task added successfully!";
+        break;
+      case "updated":
+        toastMessage = "Task updated successfully!";
+        break;
+      case "deleted":
+        toastMessage = "Task deleted successfully!";
+        break;
+    }
+    let toast = document.getElementById(messageType);
+    toast.className = "show";
+    toast.innerText = toastMessage;
+    setTimeout(() => {
+      toast.className = toast.className.replace("show", "");
+    }, 3000);
   }
-
-
-  function toastDeleted() {
-    var tDelete = document.getElementById("deleted");
-    tDelete.className = "show";
-    setTimeout(function(){ tDelete.className = tDelete.className.replace("show", ""); }, 3000);
-  }
-
-  function toastUpdated() {
-    var tUpdate = document.getElementById("updated");
-    tUpdate.className = "show";
-    setTimeout(function(){ tUpdate.className = tUpdate.className.replace("show", ""); }, 3000);
-  }
+  
 
   
